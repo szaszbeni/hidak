@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -74,7 +74,48 @@ namespace hidak
             tbhely.Text = hidak[listBox1.SelectedIndex].hely;
             tborszag.Text = hidak[listBox1.SelectedIndex].orszag;
             tbhossz.Text = hidak[listBox1.SelectedIndex].hossz.ToString();
-            tbev.Text = hidak[listBox1.SelectedIndex].ev;
+            tbev.Text = hidak[listBox1.SelectedIndex].adat;
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                int darab = 0;
+                foreach (var item in hidak)
+                {
+                    if (int.Parse(item.adat) < 2000)
+                    {
+                        darab++;
+                    }
+                }
+                tbev.Text = darab.ToString();
+            }
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                int darab = 0;
+                foreach (var item in hidak)
+                {
+                    if (int.Parse(item.adat) >= 2000)
+                    {
+                        darab++;
+                    }
+                }
+                tbev.Text = darab.ToString();
+            }
+        }
+
+        private void keresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form2 formKereses = new Form2();
+            formKereses.ShowDialog();
+            formKereses.Dispose();
+            this.Show();
         }
     }
 }
